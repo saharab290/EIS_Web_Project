@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This a demo web page for the candidate of EIP Quistionnare part B</p>
+</div>
+
+<div>
+    <table id="List of User">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Contact</td>
+                <td>Email</td>
+                <td>Password</td>
+                <td>Update</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        $(documnet).ready(function(){
+            $("#example").dataTable({
+                "processing" : true,
+                "serverSide" : false,
+                "filter" : true,
+                "orderMulti" : true,
+                "ajax" : {
+                    "url" : "/Home/UserList",
+                    "type" : "POST",
+                    "datatype" : "json"
+                },
+                "columns" : [
+                    {"data" : "Name", "autoWidth" : true},
+                    { "data": "Contact", "autoWidth": true },
+                    {"data" : "Email", "autoWidth" : true},
+                    { "data": "Password", "autoWidth": true }
+                ]
+
+            })
+        })
+    </script>
+}
